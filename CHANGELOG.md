@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/enchf/tiango/compare/v1.0.0...v1.0.1) (2025-10-15)
+
+
+### Bug Fixes
+
+* Fix name of the JAR in the release config ([752ea37](https://github.com/enchf/tiango/commit/752ea37f55ca7311d0df7003144cc00c3723fa86))
+
 # 1.0.0 (2025-10-15)
 
 
