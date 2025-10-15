@@ -15,6 +15,26 @@ mvn clean package
 ## Run
 You can download the latest release from the [Releases page](https://github.com/enchf/tiango/releases/latest).
 
+## Installation (one-line)
+
+Install the latest release and an executable wrapper with a single command:
+
+```sh
+curl -sSL https://raw.githubusercontent.com/enchf/tiango/master/scripts/install.sh | bash -s -- --install-dir "$HOME/.local/bin"
+```
+
+This will:
+- Download the latest `tiango-<version>.jar` into `~/.local/lib/tiango/`
+- Install a runnable wrapper `~/.local/bin/tiango` that executes `java -jar` on the installed JAR
+
+If you prefer an alias instead of a wrapper, add to your `~/.bashrc` or `~/.zshrc`:
+
+```sh
+alias tiango='java -jar ~/.local/lib/tiango/tiango-<version>.jar'
+```
+
+Make sure `~/.local/bin` is in your `PATH` (the installer will show instructions if it isn't).
+
 ## Contributing
 
 This project follows [Semantic Versioning](https://semver.org/) and uses automated releases. To contribute, please follow these commit message conventions:
