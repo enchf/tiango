@@ -8,15 +8,7 @@ public class Tiango {
 
     public static void main(String...args) throws Exception {
         Robot robot = new Robot();
-
-        CellularAutomata.Builder builder = args.length > 0 ?
-                CellularAutomata.builder(Integer.parseInt(args[0])) :
-                CellularAutomata.randomInteresting();
-        CellularAutomata automata = builder.displaySize(120).build();
-
-        int times = args.length > 1 ? Integer.parseInt(args[1]) : 1000;
-
-        System.out.printf("Automata rule: %d\n", automata.getRule());
+        int times = args.length > 0 ? Integer.parseInt(args[0]) : 1000;
 
         int i;
         Point current;
@@ -27,8 +19,7 @@ public class Tiango {
 
             robot.mouseMove(current.x + CIRCLES[i][0], current.y + CIRCLES[i][1]);
 
-            System.out.printf("%s\n", automata.next());
-            // System.out.printf("%d %d\n", mouseLocation.x, mouseLocation.y);
+            System.out.print(".");
             Thread.sleep(5000);
         }
     }
