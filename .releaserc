@@ -9,7 +9,7 @@
     }],
     ["@semantic-release/github", {
       "assets": [
-        {"path": "target/snippets-*.jar", "label": "tiango-${nextRelease.version}.jar"}
+  {"path": "target/tiango-*.jar", "label": "tiango-${nextRelease.version}.jar"}
       ]
     }],
     ["@semantic-release/git", {
