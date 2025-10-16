@@ -1,19 +1,10 @@
 # tiango
 A small monkey that helps you to keep your screen on.
 
+[Changelog](CHANGELOG.md) | [Releases](https://github.com/enchf/tiango/releases/latest)
+
 ## Requirements
 - Java 21 or newer
-- Maven
-
-## Build
-Compile and package the project using Maven:
-
-```sh
-mvn clean package
-```
-
-## Run
-You can download the latest release from the [Releases page](https://github.com/enchf/tiango/releases/latest).
 
 ## Installation (one-line)
 
@@ -35,11 +26,43 @@ alias tiango='java -jar ~/.local/lib/tiango/tiango-<version>.jar'
 
 Make sure `~/.local/bin` is in your `PATH` (the installer will show instructions if it isn't).
 
+### Download Latest
+You can download the latest release from the [Releases page](https://github.com/enchf/tiango/releases/latest).
+
+## Usage
+
+Execute tiango in a Terminal:
+
+```sh
+tiango
+```
+
+You can also pass ah argument to specify the number of iterations:
+
+```sh
+tiango <iterations>
+```
+
 ## Contributing
+
+### Build
+Compile and package the project using Maven:
+
+```sh
+mvn clean package
+```
+
+After building, you can run the executable JAR:
+
+```sh
+java -jar target/snippets-1.0-SNAPSHOT.jar
+```
+
+### Versioning
 
 This project follows [Semantic Versioning](https://semver.org/) and uses automated releases. To contribute, please follow these commit message conventions:
 
-### Commit Message Format
+#### Commit Message Format
 Each commit message consists of a **type**, a **subject**, and optionally a **body** and **footer**:
 
 ```
@@ -50,7 +73,7 @@ Each commit message consists of a **type**, a **subject**, and optionally a **bo
 <footer>
 ```
 
-#### Types
+##### Types
 - `feat`: A new feature (minor version bump)
 - `fix`: A bug fix (patch version bump)
 - `docs`: Documentation only changes
@@ -60,7 +83,7 @@ Each commit message consists of a **type**, a **subject**, and optionally a **bo
 - `test`: Adding missing tests or correcting existing tests
 - `chore`: Changes to the build process or auxiliary tools
 
-#### Breaking Changes
+##### Breaking Changes
 To create a breaking change (major version bump), add `BREAKING CHANGE:` in the commit message body or append a `!` after the type:
 
 ```
@@ -74,16 +97,4 @@ Examples:
 git commit -m "fix: prevent screen from sleeping"
 git commit -m "feat: add new animation pattern"
 git commit -m "docs: update installation instructions"
-```
-
-After building, you can run the executable JAR:
-
-```sh
-java -jar target/snippets-1.0-SNAPSHOT.jar
-```
-
-You can also pass ah argument to specify the number of iterations:
-
-```sh
-java -jar target/snippets-1.0-SNAPSHOT.jar <iterations>
 ```
