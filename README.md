@@ -1,5 +1,5 @@
 # tiango
-A small monkey that helps you to keep your screen on.
+A small monkey 🐵 that helps you to keep your screen on.
 
 [Changelog](CHANGELOG.md) | [Releases](https://github.com/enchf/tiango/releases/latest)
 
@@ -59,7 +59,9 @@ tiango <iterations>
 - Process substitution (bash/zsh):
   `tiango < <(ls -l)`
 
-When `tiango` receives input via stdin it reads until EOF. If no stdin is provided, it falls back to its normal behaviour (for example, using command-line arguments or interactive mode).
+When `tiango` receives input via stdin it reads until EOF. 
+If no stdin is provided, it falls back to its normal behaviour (for example, using command-line arguments or interactive mode).
+If external stdin is empty, `tiango` will also behave as if no stdin was provided.
 
 ## Contributing
 
