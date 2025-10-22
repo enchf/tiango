@@ -2,7 +2,6 @@ package com.enchf;
 
 import java.awt.*;
 import java.time.Duration;
-import java.util.Objects;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -23,12 +22,12 @@ public class Tiango {
         scheduler.schedule(scheduler::shutdownNow, totalMs, TimeUnit.MILLISECONDS);
 
         boolean finished = scheduler.awaitTermination(totalMs + PAUSE, TimeUnit.MILLISECONDS);
-        System.out.println("Tiango terminated " + (finished ? "successfully." : "with timeout."));
+        System.out.println("\nTiango 🐵 terminated " + (finished ? "successfully." : "with timeout."));
     }
 
     private static Runnable getIteration(Robot robot) {
         AtomicInteger idx = new AtomicInteger(0);
-        Output output = Objects.isNull(System.console()) ? new DefaultOutput() : new ConsoleOutput();
+        Output output = new Output();
         return () -> {
             try {
                 Point current = MouseInfo.getPointerInfo().getLocation();
