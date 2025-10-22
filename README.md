@@ -43,6 +43,24 @@ You can also pass ah argument to specify the number of iterations:
 tiango <iterations>
 ```
 
+### Shell invocation
+
+`tiango` can accept input from standard input (stdin). Common ways to provide input from the shell:
+
+- Pipe:
+  `ls -l | tiango`
+
+- Redirect from a file:
+  `tiango < file.txt`
+
+- Here-string:
+  `tiango <<< "$(ls -l)"`
+
+- Process substitution (bash/zsh):
+  `tiango < <(ls -l)`
+
+When `tiango` receives input via stdin it reads until EOF. If no stdin is provided, it falls back to its normal behaviour (for example, using command-line arguments or interactive mode).
+
 ## Contributing
 
 ### Build
