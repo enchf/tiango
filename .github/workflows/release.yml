@@ -5,12 +5,17 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+    types: [closed]
 
 jobs:
   release:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: write
+    
+    # Only run on push to master or when a PR is merged
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
     
     steps:
     - uses: actions/checkout@v4
@@ -33,16 +38,20 @@ jobs:
         node-version: 'lts/*'
     
     - name: Configure Git
-      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
       run: |
         git config --global user.name 'GitHub Actions'
         git config --global user.email 'actions@github.com'
-        git remote set-url origin https://x-access-token:${{ secrets.SEMANTIC_RELEASE }}@github.com/${{ github.repository }}.git
-
-    - name: Semantic Release
+    
+    - name: Create version update branch
+      run: |
+        git checkout -b version-update-$(date +%s)
+        git config --global pull.rebase false
+    
+    - name: Run Semantic Release
+      id: semantic
       uses: cycjimmy/semantic-release-action@v4
       env:
-        GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         extra_plugins: |
           @semantic-release/git
@@ -50,5 +59,26 @@ jobs:
           @semantic-release/exec
         branches: |
           ['master']
-        # Only run in dry-run mode for pull requests that aren't merged yet
-        dry_run: ${{ github.event_name == 'pull_request' && !github.event.pull_request.merged }}
+        dry_run: false
+    
+    - name: Check for changes
+      id: changes
+      run: |
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "changes_detected=true" >> $GITHUB_OUTPUT
+        else
+          echo "changes_detected=false" >> $GITHUB_OUTPUT
+        fi
+    
+    - name: Create Pull Request
+      if: steps.changes.outputs.changes_detected == 'true'
+      uses: peter-evans/create-pull-request@v5
+      with:
+        commit-message: 'chore(release): update version and changelog'
+        title: 'chore: update version and changelog'
+        body: 'Automated version and changelog update'
+        branch: version-update-$(date +%s)
+        base: master
+        delete-branch: true
+        token: ${{ secrets.GITHUB_TOKEN }}
+        labels: 'dependencies, automated'
