@@ -1,6 +1,8 @@
 name: Release
 
 on:
+  push:
+    branches: [ master ]
   pull_request:
     branches: [ master ]
 
@@ -31,7 +33,6 @@ jobs:
         node-version: 'lts/*'
     
     - name: Semantic Release
-      if: github.event_name == 'pull_request' && github.event.pull_request.merged == true
       uses: cycjimmy/semantic-release-action@v4
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -42,4 +43,5 @@ jobs:
           @semantic-release/exec
         branches: |
           ['master']
-        dry_run: ${{ github.event_name != 'push' }}
+        # Only run in dry-run mode for pull requests that aren't merged yet
+        dry_run: ${{ github.event_name == 'pull_request' && !github.event.pull_request.merged }}
