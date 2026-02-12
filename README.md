@@ -4,7 +4,7 @@ A small monkey 🐵 that helps you to keep your screen on.
 [Changelog](CHANGELOG.md) | [Releases](https://github.com/enchf/tiango/releases/latest)
 
 ## Requirements
-- Java 21 or newer
+- Java 11 or newer
 
 ## Installation (one-line)
 
