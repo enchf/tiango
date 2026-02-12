@@ -49,11 +49,21 @@ echo "Downloading $JAR_FILENAME to $TARGET_JAR..."
 curl -sSL "$ASSET_URL" -o "$TARGET_JAR"
 chmod 644 "$TARGET_JAR"
 
+# Remove old jar files
+echo "Removing old tiango versions..."
+find "$JAR_DIR" -name "tiango-*.jar" -not -name "$JAR_FILENAME" -delete 2>/dev/null || true
+
 # Create wrapper
 WRAPPER="$INSTALL_DIR/tiango"
 cat > "$WRAPPER" <<'EOF'
 #!/usr/bin/env bash
-exec java -jar "${0%/*}/../lib/tiango/"* "$@"
+here="$(cd "$(dirname "$0")" && pwd)"
+jar="$(ls -1t "$here/../lib/tiango"/*.jar 2>/dev/null | head -n1)"
+if [ -z "$jar" ]; then
+  echo "No tiango jar found in $here/../lib/tiango" >&2
+  exit 1
+fi
+exec java -jar "$jar" "$@"
 EOF
 
 chmod +x "$WRAPPER"
