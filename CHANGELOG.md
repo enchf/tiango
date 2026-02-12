@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/enchf/tiango/compare/v1.3.0...v1.3.1) (2026-02-12)
+
+
+### Bug Fixes
+
+* Fix installer to avoid wrapper selection of old JARs ([673fac3](https://github.com/enchf/tiango/commit/673fac3fc42873821cc3fc1510139f05507e7b48))
+
 # [1.3.0](https://github.com/enchf/tiango/compare/v1.2.0...v1.3.0) (2026-02-12)
 
 
