@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/enchf/tiango/compare/v1.2.0...v1.3.0) (2026-02-12)
+
+
+### Features
+
+* Add CLI framework for argument parsing ([85ac2cd](https://github.com/enchf/tiango/commit/85ac2cd9436bdf75f04df8c79bf0c62bbca0feaa))
+
 # [1.2.0](https://github.com/enchf/tiango/compare/v1.1.0...v1.2.0) (2026-02-12)
 
 
