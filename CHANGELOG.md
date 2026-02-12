@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/enchf/tiango/compare/v1.1.0...v1.2.0) (2026-02-12)
+
+
+### Features
+
+* Set Java 11 as the minimal version for this executable ([03ed841](https://github.com/enchf/tiango/commit/03ed8414e9a282a2e558d021cb0b9433c94fb21d))
+
 # [1.1.0](https://github.com/enchf/tiango/compare/v1.0.2...v1.1.0) (2025-10-31)
 
 
