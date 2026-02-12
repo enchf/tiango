@@ -1,4 +1,4 @@
-package com.enchf;
+package com.enchf.tiango;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -13,6 +13,15 @@ public class Output {
     private boolean firstExternal = true;
     private boolean externalExhausted = false;
     private boolean externalExisted = false;
+    private final boolean debug;
+
+    public Output() {
+        this.debug = false;
+    }
+
+    public Output(boolean debug) {
+        this.debug = debug;
+    }
 
     public String next() {
         if (firstCall) {
@@ -21,25 +30,40 @@ public class Output {
         }
 
         String line = nextReaderLine();
+        String nextLine;
 
         if (line != null) {
             externalExisted = true;
             if (firstExternal) {
                 firstExternal = false;
-                return "\n" + line;
+                nextLine = "\n" + line;
             }
-            return line;
+            nextLine = line;
         } else if (externalExisted && !externalExhausted) {
             externalExhausted = true;
-            return CONTINUE;
+            nextLine = CONTINUE;
         } else {
-            return ".";
+            nextLine = ".";
         }
+        
+        if (debug) {
+            System.out.printf("Next line printed: %s%n", nextLine);
+        }
+        
+        return nextLine;
     }
 
     private String nextReaderLine() {
         try {
-            return Optional.ofNullable(reader.readLine()).map(line -> line + "\n").orElse(null);
+            if (debug) {
+                System.out.println("Reading next line from console...");
+            }
+            // Check if input is available before trying to read
+            if (reader.ready()) {
+                return Optional.ofNullable(reader.readLine()).map(line -> line + "\n").orElse(null);
+            } else {
+                return null; // No input available, don't block
+            }
         } catch (Exception ex) {
             System.err.println("Error reading console input: " + ex.getMessage());
             return null;
