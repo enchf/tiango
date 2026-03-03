@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/enchf/tiango/compare/v1.4.0...v1.4.1) (2026-03-03)
+
+
+### Bug Fixes
+
+* Fix issue with release version numbering ([2dc1459](https://github.com/enchf/tiango/commit/2dc14591f758bdb12b807804afe78699f25bf4eb))
+
 # [1.4.0](https://github.com/enchf/tiango/compare/v1.3.1...v1.4.0) (2026-03-03)
 
 
