@@ -5,7 +5,7 @@
     "@semantic-release/release-notes-generator",
     "@semantic-release/changelog",
     ["@semantic-release/exec", {
-      "prepareCmd": "mvn versions:set -DnewVersion=${nextRelease.version} && mvn versions:commit"
+      "prepareCmd": "mvn versions:set -DnewVersion=${nextRelease.version} && mvn versions:commit && mvn clean package -DskipTests"
     }],
     ["@semantic-release/github", {
       "assets": [
