@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/enchf/tiango/compare/v1.3.1...v1.4.0) (2026-03-03)
+
+
+### Features
+
+* Change dots printed by a decreasing timer ([ae83855](https://github.com/enchf/tiango/commit/ae83855613955797929d24d877cc2e8c4ad030a4))
+
 ## [1.3.1](https://github.com/enchf/tiango/compare/v1.3.0...v1.3.1) (2026-02-12)
 
 
